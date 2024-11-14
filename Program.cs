@@ -35,13 +35,12 @@ namespace ThreadedConsumerProducer
                 consumers[consumerIndex].Start();
             }
 
-            // Очікування завершення всіх потоків
             foreach (var producer in producers)
                 producer.Join();
             foreach (var consumer in consumers)
                 consumer.Join();
 
-            Console.WriteLine("Програма завершена.");
+            Console.WriteLine("Програму завершено.");
         }
 
         static void Producer(int id, int productionAmount)
@@ -56,7 +55,7 @@ namespace ThreadedConsumerProducer
 
                 string product = $"{id}-{i}";
                 storage.Enqueue(product);
-                Console.WriteLine($"Виробник {id} додав продукцію {product}\t Час: {GetTimeMSec()}");
+                Console.WriteLine($"Виробник {id} додав продукт {product}\t Час: {GetTimeMSec()}");
 
                 productionSemaphore.Release();
                 storageAccessSemaphore.Release();
